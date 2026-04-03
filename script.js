@@ -32,12 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Toggle completion status
     const toggleTask = (id) => {
-        tasks = tasks.map(task => 
+        tasks = tasks.map(task =>
             task.id === id ? { ...task, completed: !task.completed } : task
         );
         saveTasks();
         // Just re-render everything for simplicity, could also toggle classes directly for perf
-        render(); 
+        render();
     };
 
     // Delete a task
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render tasks based on filter
     const render = () => {
         list.innerHTML = '';
-        
+
         let filteredTasks = tasks;
         if (currentFilter === 'active') {
             filteredTasks = tasks.filter(task => !task.completed);
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const li = document.createElement('li');
                 li.className = `task-item ${task.completed ? 'completed' : ''}`;
                 li.dataset.id = task.id;
-                
+
                 li.innerHTML = `
                     <label class="checkbox-container">
                         <input type="checkbox" ${task.completed ? 'checked' : ''}>
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateStats = () => {
         const activeTasksCount = tasks.filter(task => !task.completed).length;
         itemsLeftElement.textContent = `${activeTasksCount} item${activeTasksCount !== 1 ? 's' : ''} left`;
-        
+
         // Show/hide clear completed button
         const hasCompleted = tasks.some(task => task.completed);
         clearBtn.style.opacity = hasCompleted ? '1' : '0.5';
